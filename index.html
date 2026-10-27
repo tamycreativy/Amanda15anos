@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#120406">
+<title>Convite Amanda, 15 anos</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="Convite · 15 anos da Amanda">
+<meta property="og:description" content="Toque para abrir o convite.">
+<meta property="og:image" content="https://raw.githubusercontent.com/tamycreativy/Amanda15anos/main/preview.jpg?v=1">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/tamycreativy/Amanda15anos/main/preview.jpg?v=1">
+<style>
+[hidden]{display:none!important}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#120406;overflow:hidden;overscroll-behavior:none;-webkit-tap-highlight-color:transparent}
+video{position:fixed;inset:0;width:100%;height:100%;object-fit:contain;background:#120406}
+.cta{position:fixed;inset:0;display:grid;place-items:center;border:0;padding:0;background:rgba(18,4,6,.35);cursor:pointer;color:#fff1cf;font:inherit}
+.cta span{display:grid;place-items:center;width:30vmin;height:30vmin;max-width:150px;max-height:150px;border-radius:50%;background:rgba(18,4,6,.55);border:2px solid #e8c88a;box-shadow:0 0 40px rgba(232,200,138,.35)}
+.cta svg{width:38%;height:38%;margin-left:8%;fill:#fff1cf}
+.cta small{position:absolute;left:0;right:0;bottom:calc(10% + env(safe-area-inset-bottom,0px));text-align:center;font:600 4.2vmin/1.2 Georgia,'Times New Roman',serif;letter-spacing:.08em;color:#fff1cf;text-shadow:0 1px 8px #000}
+</style>
+</head>
+<body>
+<video id="v" src="convite.mp4" poster="poster.jpg" playsinline webkit-playsinline preload="auto"></video>
+<button class="cta" id="cta" type="button" aria-label="Abrir convite"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg></span><small>toque para abrir</small></button>
+<script>
+(function(){
+  var v=document.getElementById('v'),cta=document.getElementById('cta'),label=cta.querySelector('small');
+  function start(){v.currentTime=0;var p=v.play();if(p&&p.catch)p.catch(function(){cta.hidden=false});cta.hidden=true}
+  cta.addEventListener('click',start);
+  v.addEventListener('ended',function(){label.textContent='toque para rever';cta.hidden=false});
+  v.addEventListener('pause',function(){if(!v.ended&&!cta.hidden)return});
+  v.addEventListener('click',function(){if(v.paused)v.play();else v.pause()});
+})();
+</script>
+</body>
+</html>
